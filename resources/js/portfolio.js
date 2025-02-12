@@ -1,23 +1,16 @@
 $(document).ready(() => {
     let config = document.querySelector(".mymixcont");
     let mixer = mixitup(config, {
-        selectors: {
-            target: ".mix",
-        },
+        selectors: { target: ".mix" },
         animation: {
             easing: "ease-in-out",
             applyPerspective: true,
             duration: 750,
             reverseOut: true,
             effects: "fade rotateY(90deg) stagger(100ms)",
-            staggerSequence: function (i) {
-                return 2 * i - 5 * (i / 3 - (1 / 3) * (i % 3));
-            },
             nudge: false,
         },
-        controls: {
-            live: false,
-        },
+        controls: { live: false },
     });
 
     $(".closeButton").click(() => {
@@ -30,281 +23,144 @@ $(document).ready(() => {
     });
 
     function portfolioView(object) {
-        let namePlate = document.querySelector(
-            ".tip .allContent .description .pro_intro .nameplate h1"
-        );
-        namePlate.textContent = object.namePlate;
+        document.querySelector(".tip .nameplate h1").textContent = object.namePlate;
+        document.querySelector(".tip .nameplate span span").textContent = object.category;
+        document.querySelector(".tip .other_text p").textContent = object.project_brief;
+        document.querySelector(".tip .Date span").textContent = object.project_date;
+        document.querySelector(".tip .client span").textContent = object.project_client;
+        document.querySelector(".tip .link a").textContent = object.project_link;
+        document.querySelector(".tip .link a").href = object.project_link;
 
-        let category = document.querySelector(
-            ".tip .allContent .description .pro_intro .nameplate span span"
-        );
-        category.textContent = object.category;
+        let swiper_wrapper = document.querySelector(".tip .swiper-container-2 .swiper-wrapper");
+        swiper_wrapper.innerHTML = ""; // Clear previous images
 
-        let pro_brief = document.querySelector(
-            ".tip .allContent .description .pro_intro .other_text p"
-        );
-        pro_brief.textContent = object.project_brief;
+        object.image.forEach((imgSrc) => {
+            let slide = document.createElement("div");
+            slide.classList.add("swiper-slide");
+            slide.innerHTML = `<img src="${imgSrc}" alt="Project Image" />`;
+            swiper_wrapper.appendChild(slide);
+        });
 
-        let project_date = document.querySelector(
-            ".tip .allContent .description .pro_info .Date span"
-        );
-        project_date.textContent = object.project_date;
-
-        let project_client = document.querySelector(
-            ".tip .allContent .description .pro_info .client span"
-        );
-        project_client.textContent = object.project_client;
-
-        let project_link = document.querySelector(
-            ".tip .allContent .description .pro_info .link a"
-        );
-        project_link.textContent = object.project_link;
-
-        let swiper_wrapper = document.querySelector(
-            ".tip .swiper-container-2 .swiper-wrapper"
-        );
-
-        let image = swiper_wrapper.querySelectorAll(".swiper-slide img");
-
-        for (let i = 0; i < object.image.length; i++) {
-            image[i].src = object.image[i];
-        }
+        swiper.update(); // Refresh Swiper after updating images
     }
 
-    // Swiper js
+    // Swiper initialization
     var swiper = new Swiper(".swiper-container-2", {
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 1,
-        // effect: "flip",
-        // cubeEffect: {
-        //     shadow: true,
-        //     slideShadows: true,
-        //     shadowOffset: 20,
-        //     shadowScale: 0.94,
-        // },
-        // effect: "coverflow",
-        // coverflowEffect: {
-        //     rotate: 30,
-        //     stretch: 0,
-        //     depth: 100,
-        //     modifier: 1,
-        //     slideShadows: true,
-        // },
-
         effect: "cube",
-        cubeEffect: {
-            shadow: true,
-            slideShadows: true,
-            shadowOffset: 20,
-            shadowScale: 0.94,
-        },
+        cubeEffect: { shadow: true, slideShadows: true, shadowOffset: 20, shadowScale: 0.94 },
         spaceBetween: 50,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        scrollbar: {
-            el: ".swiper-scrollbar",
-            hide: true,
-        },
+        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        scrollbar: { el: ".swiper-scrollbar", hide: true },
     });
 
-    let about_nav_btn_2 = document.querySelectorAll(".about_nav a");
-
-    function collapse2() {
-        about_nav_btn_2.forEach((link) => {
-            link.classList.remove("active");
-        });
-    }
-
-    function slider1(selector) {
-        selector.addEventListener("click", () => {
-            collapse2();
-            selector.classList.add("active");
-        });
-    }
-
-    slider1(about_nav_btn_2[0]);
-    slider1(about_nav_btn_2[1]);
-    slider1(about_nav_btn_2[2]);
-    slider1(about_nav_btn_2[3]);
-    slider1(about_nav_btn_2[4]);
-    slider1(about_nav_btn_2[5]);
-
-    let cards = document.querySelectorAll(".mix");
     let tip = document.querySelector(".tip");
+    let cards = document.querySelectorAll(".mix");
 
+    // Click event for each project
     cards.forEach((card) => {
         card.addEventListener("click", () => {
-            if (card.classList.contains("web")) {
-                tip.classList.add("view");
-                let website = card
-                    .querySelector(".title")
-                    .textContent.replace(" ", "")
-                    .replace(" ", ".")
-                    .toLowerCase();
-                portfolioView({
-                    namePlate: card.querySelector(".title").textContent,
+            let projectName = card.querySelector(".title").textContent;
+            let formattedProjectName = projectName.replace(/\s+/g, "").toLowerCase();
+
+            let projectData = {
+                "arfscrib": {
+                    namePlate: "arfscrib",
                     category: "Web Development",
-                    project_brief: `Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. At corrupti modi perferendis
-                                    iure corporis dolores minus asperiores nemo
-                                    debitis veritatis id placeat, similique eum
-                                    recusandae ipsa quia cum earum nam?`,
+                    project_brief: "A modern and interactive real estate website showcasing available properties with dynamic search capabilities.",
+                    project_date: "2023",
+                    project_client: "ARF Properties",
+                    project_link: "https://arfscrib.com",
+                    image: ["/resources/img/portfolios/web/1.png", "/resources/img/portfolios/web/2.png"]
+                },
+                "stepupstreetshoes": {
+                    namePlate: "StepUpStreet Shoes",
+                    category: "E-commerce",
+                    project_brief: "An online shoe store with a stylish design and seamless shopping experience.",
+                    project_date: "2022",
+                    project_client: "StepUpStreet",
+                    project_link: "https://stepupstreet.com",
+                    image: ["/resources/img/portfolios/web/3.jpg", "/resources/img/portfolios/web/4.jpg"]
+                },
+                "cactuscafe": {
+                    namePlate: "Cactus Cafe",
+                    category: "Restaurant Website",
+                    project_brief: "A cozy and vibrant cafe website with an integrated menu, online reservation system, and customer reviews.",
+                    project_date: "2023",
+                    project_client: "Cactus Cafe",
+                    project_link: "https://cactuscafe.com",
+                    image: ["/resources/img/portfolios/web/2.png", "/resources/img/portfolios/web/5.jpg"]
+                },
+                "worldview": {
+                    namePlate: "World View",
+                    category: "Travel App",
+                    project_brief: "A travel application providing real-time weather updates, places to visit, and personalized recommendations.",
+                    project_date: "2021",
+                    project_client: "WorldView Ltd.",
+                    project_link: "https://worldview.com",
+                    image: ["/resources/img/portfolios/app/1.jpg", "/resources/img/portfolios/app/2.jpg"]
+                },
+                "irsaccountingsystem": {
+                    namePlate: "IRS Accounting System",
+                    category: "Financial System",
+                    project_brief: "A robust accounting system designed for tax compliance and financial reporting.",
+                    project_date: "2022",
+                    project_client: "IRS",
+                    project_link: "https://irsaccounting.com",
+                    image: ["/resources/img/portfolios/card/2.jpg", "/resources/img/portfolios/card/3.jpg"]
+                },
+                "reauty": {
+                    namePlate: "Reauty",
+                    category: "Beauty E-commerce",
+                    project_brief: "An elegant e-commerce platform for beauty products with virtual try-on features.",
+                    project_date: "2022",
+                    project_client: "Reauty Inc.",
+                    project_link: "https://reauty.com",
+                    image: ["/resources/img/portfolios/card/3.jpg", "/resources/img/portfolios/card/4.jpg"]
+                },
+                "richardtan": {
+                    namePlate: "Richard Tan",
+                    category: "Portfolio Website",
+                    project_brief: "A minimalist and professional portfolio website for a creative designer.",
+                    project_date: "2023",
+                    project_client: "Richard Tan",
+                    project_link: "https://richardtan.com",
+                    image: ["/resources/img/portfolios/card/4.jpg", "/resources/img/portfolios/card/5.jpg"]
+                },
+                "kittypic": {
+                    namePlate: "Kitty Pic",
+                    category: "Photography Website",
+                    project_brief: "A photography portfolio website showcasing adorable cat pictures in high resolution.",
+                    project_date: "2023",
+                    project_client: "KittyPic Studio",
+                    project_link: "https://kittypic.com",
+                    image: ["/resources/img/portfolios/logo/1.jpg", "/resources/img/portfolios/logo/2.jpg"]
+                },
+                "domine": {
+                    namePlate: "Domine",
+                    category: "Tech Blog",
+                    project_brief: "A blog dedicated to the latest tech trends, innovations, and reviews.",
+                    project_date: "2022",
+                    project_client: "Domine Tech",
+                    project_link: "https://dominetech.com",
+                    image: ["/resources/img/portfolios/icon/4.jpg", "/resources/img/portfolios/icon/5.jpg"]
+                },
+                "profileworld": {
+                    namePlate: "Profile World",
+                    category: "Social Networking",
+                    project_brief: "A unique social networking platform focused on user customization and privacy.",
+                    project_date: "2023",
+                    project_client: "ProfileWorld Inc.",
+                    project_link: "https://profileworld.com",
+                    image: ["/resources/img/portfolios/app/2.jpg", "/resources/img/portfolios/app/3.jpg"]
+                }
+            };
 
-                    project_date: "2019",
-                    project_client: "XYZ Corporation",
-                    project_link: `www.${website}.com`,
-
-                    image: [
-                        "resources/img/portfolios/web/1.jpg",
-                        "resources/img/portfolios/web/2.jpg",
-                        "resources/img/portfolios/web/3.jpg",
-                        "resources/img/portfolios/web/4.jpg",
-                        "resources/img/web_design.jpg",
-                        "resources/img/web_design.jpg",
-                        "resources/img/web_design.jpg",
-                        "resources/img/web_design.jpg",
-                        "resources/img/web_design.jpg",
-                    ],
-                });
-            } else if (card.classList.contains("logo")) {
+            if (projectData[formattedProjectName]) {
                 tip.classList.add("view");
-                let website = card
-                    .querySelector(".title")
-                    .textContent.replace(" ", "")
-                    .replace(" ", ".")
-                    .toLowerCase();
-                portfolioView({
-                    namePlate: card.querySelector(".title").textContent,
-                    category: "Logo Designing",
-                    project_brief: `Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. At corrupti modi perferendis
-                                    iure corporis dolores minus asperiores nemo
-                                    debitis veritatis id placeat, similique eum
-                                    recusandae ipsa quia cum earum nam?`,
-
-                    project_date: "2019",
-                    project_client: `${
-                        card.querySelector(".title").textContent
-                    } Corporation`,
-                    project_link: `www.${website}.com`,
-
-                    image: [
-                        "resources/img/portfolios/logo/1.jpg",
-                        "resources/img/portfolios/logo/2.jpg",
-                        "resources/img/portfolios/logo/3.jpg",
-                        "resources/img/portfolios/logo/4.jpg",
-                        "resources/img/portfolios/logo/5.jpg",
-                        "resources/img/portfolios/logo/6.jpg",
-                        "resources/img/portfolios/logo/7.jpg",
-                        "resources/img/logo_design.jpg",
-                        "resources/img/logo_design.jpg",
-                    ],
-                });
-            } else if (card.classList.contains("card")) {
-                tip.classList.add("view");
-                let website = card
-                    .querySelector(".title")
-                    .textContent.replace(" ", "")
-                    .replace(" ", ".")
-                    .toLowerCase();
-                portfolioView({
-                    namePlate: card.querySelector(".title").textContent,
-                    category: "Graphics Designing",
-                    project_brief: `Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. At corrupti modi perferendis
-                                    iure corporis dolores minus asperiores nemo
-                                    debitis veritatis id placeat, similique eum
-                                    recusandae ipsa quia cum earum nam?`,
-
-                    project_date: "2019",
-                    project_client: `${
-                        card.querySelector(".title").textContent
-                    } Corporation`,
-                    project_link: `www.${website}.com`,
-
-                    image: [
-                        "resources/img/portfolios/card/1.jpg",
-                        "resources/img/portfolios/card/2.jpg",
-                        "resources/img/portfolios/card/3.jpg",
-                        "resources/img/portfolios/card/4.jpg",
-                        "resources/img/portfolios/card/5.jpg",
-                        "resources/img/graphics_design.jpg",
-                        "resources/img/graphics_design.jpg",
-                        "resources/img/graphics_design.jpg",
-                        "resources/img/graphics_design.jpg",
-                    ],
-                });
-            } else if (card.classList.contains("icon")) {
-                tip.classList.add("view");
-                let website = card
-                    .querySelector(".title")
-                    .textContent.replace(" ", "")
-                    .replace(" ", ".")
-                    .toLowerCase();
-                portfolioView({
-                    namePlate: card.querySelector(".title").textContent,
-                    category: "Icon Designing",
-                    project_brief: `Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. At corrupti modi perferendis
-                                    iure corporis dolores minus asperiores nemo
-                                    debitis veritatis id placeat, similique eum
-                                    recusandae ipsa quia cum earum nam?`,
-
-                    project_date: "2019",
-                    project_client: `${
-                        card.querySelector(".title").textContent
-                    } Corporation`,
-                    project_link: `www.${website}.com`,
-
-                    image: [
-                        "resources/img/portfolios/icon/1.jpg",
-                        "resources/img/portfolios/icon/2.jpg",
-                        "resources/img/portfolios/icon/3.jpg",
-                        "resources/img/portfolios/icon/4.jpg",
-                        "resources/img/portfolios/icon/5.jpg",
-                        "resources/img/icon_design.png",
-                        "resources/img/icon_design.png",
-                        "resources/img/icon_design.png",
-                        "resources/img/icon_design.png",
-                    ],
-                });
-            } else if (card.classList.contains("app")) {
-                tip.classList.add("view");
-                let website = card
-                    .querySelector(".title")
-                    .textContent.replace(" ", "")
-                    .replace(" ", ".")
-                    .toLowerCase();
-                portfolioView({
-                    namePlate: card.querySelector(".title").textContent,
-                    category: "UI/UX Designing",
-                    project_brief: `Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. At corrupti modi perferendis
-                                    iure corporis dolores minus asperiores nemo
-                                    debitis veritatis id placeat, similique eum
-                                    recusandae ipsa quia cum earum nam?`,
-
-                    project_date: "2019",
-                    project_client: `${
-                        card.querySelector(".title").textContent
-                    } Corporation`,
-                    project_link: `www.${website}.com`,
-
-                    image: [
-                        "resources/img/portfolios/app/1.jpg",
-                        "resources/img/portfolios/app/2.jpg",
-                        "resources/img/portfolios/app/3.jpg",
-                        "resources/img/ui_design.jpg",
-                        "resources/img/ui_design.jpg",
-                        "resources/img/ui_design.jpg",
-                        "resources/img/ui_design.jpg",
-                        "resources/img/ui_design.jpg",
-                        "resources/img/ui_design.jpg",
-                    ],
-                });
+                portfolioView(projectData[formattedProjectName]);
             }
         });
     });

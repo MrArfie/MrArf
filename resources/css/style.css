@@ -255,4 +255,26 @@ a {
     .tip {
         margin-left: 0;
     }
+    .navigation {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center items */
+        justify-content: center;
+        padding: 20px;
+        width: 100%; /* Ensure it takes the correct width */
+    }
+    
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+    
+    .sidebar-logo {
+        width: 100px; /* Adjust this */
+        height: auto;
+    }
+    
+    
 }
