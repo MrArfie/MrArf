@@ -10,7 +10,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://MrArfie.github.io/your-repository-name",
+  "homepage": "https://MrArfie.github.io/MrArf",
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "vite": "^5.4.14"
