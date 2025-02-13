@@ -25,16 +25,16 @@
 .info {
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    padding: 10px;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    margin: 10px 0;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 280px;
+    background: rgba(0, 0, 0, 0.8); /* Darker semi-transparent background */
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
 }
 
 .info::after {
@@ -48,42 +48,42 @@
 }
 
 .info i {
-    text-align: center;
-    display: block;
-    font-size: 30px;
-    padding: 10px;
+    font-size: 40px;
+    padding: 12px;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    transform: translateZ(10px);
-    line-height: 40px;
-    background: linear-gradient(0deg, #c017bb, #e5242a);
-    transition: 0.4s;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    color: white;
+    background: linear-gradient(135deg, #e91e63, #ff9800);
+    margin-bottom: 10px;
 }
-
-.info:hover i {
-    transform: translateZ(40px);
-    transition: 0.4s 0.1s;
+.info strong {
+    color: #6dd5ed; /* Light blue for better visibility */
+    font-weight: bold;
+}
+.info:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }
 
 .info a {
-    transform: translateZ(0px);
-    color: dodgerblue;
+    color: #00c3ff;
     text-decoration: none;
-    transition: 0.4s;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.info:hover a {
-    transform: translateZ(75px);
-    transition: 0.4s 0.2s;
+.info a:hover {
+    text-decoration: underline;
 }
 
 .info .iname {
-    text-align: center;
-    font-size: 20px;
-    font-style: italic;
-    transition: 0.4s;
-    color: #acacac;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 5px;
 }
 
 .info:hover .iname {
@@ -93,34 +93,110 @@
     opacity: 0.2;
 }
 
+/* Ensure form stands out against background */
 form {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.7); /* Darker background for better visibility */
+    backdrop-filter: blur(10px); /* Subtle blur for contrast */
 }
 
+/* Title inside the form */
 form h1 {
-    color: #ccc;
+    color: white;
     text-align: center;
+    font-size: 24px;
+    font-weight: bold;
 }
 
+/* Style for input fields */
 form .inp_field {
     position: relative;
-    width: 380px;
-    height: 65px;
-    border-radius: 100px;
-    transform-style: preserve-3d;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    border-radius: 30px;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    flex-direction: row;
-    margin: 10px 0;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.2); /* Less transparency */
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin: 12px 0;
 }
+
+/* Input field text */
+form .inp_field input {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    background: none;
+    outline: none;
+    color: white;
+    padding: 10px;
+}
+
+/* Placeholder styling for better readability */
+.inp_field input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+}
+
+/* Message box styling */
+.message {
+    width: 100%;
+    max-width: 400px;
+    height: 100px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+    resize: none;
+}
+
+/* Updated Submit Button */
+.submit {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 12px 20px;
+    margin: 20px 0;
+    background: linear-gradient(90deg, #06D6A0, #118AB2);
+    color: white;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for the button */
+.submit:hover {
+    background: linear-gradient(90deg, #118AB2, #06D6A0);
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(6, 214, 160, 0.3);
+}
+
+/* Mobile-Friendly Adjustments */
+@media (max-width: 768px) {
+    .layer6 .contact_us {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    form .inp_field,
+    .message {
+        max-width: 100%;
+    }
+}
+
 
 form .inp_field input {
     width: 300px;

@@ -93,8 +93,8 @@ $(document).ready(() => {
         {
             title: "ARF's CRIB",
             category: "Web Development",
-            description: "<b>A modern and interactive personal website</b> showcasing portfolio, services, and blog.",
-            date: "2023",
+            description: "<b>content of ARF's CRIB, the site primarily features articles and discussions on various topics, including gaming and technology. However, there is no explicit information detailing the specific programming tools or technologies utilized in its development..",
+            date: "2022",
             client: "Adrian Roque Fernando",
             link: "https://www.arfscrib.com",
             images: [
@@ -106,24 +106,101 @@ $(document).ready(() => {
             title: "StepUpStreet Shoes",
             category: "E-Commerce",
             description: "An online store for <i>premium sneakers and streetwear fashion</i>. Features include product filtering, cart management, and secure checkout.",
-            date: "2022",
+            date: "2023",
             client: "StepUpStreet",
-            link: "https://www.stepupstreet.com",
+            link: "https://www.stepupstreetshoe.com",
             images: [
-                "resources/img/portfolios/web/3.png",
-                "resources/img/portfolios/web/4.png",
+                "resources/img/portfolios/web/4.jpg",
+                "resources/img/portfolios/web/5.png",
             ],
         },
         {
             title: "Cactus Cafe",
             category: "Business Website",
             description: "A <b>modern coffee shop website</b> with an online menu, location details, and social media integration.",
-            date: "2021",
+            date: "2023",
             client: "Cactus Cafe",
             link: "https://www.cactuscafe.com",
             images: [
                 "resources/img/portfolios/web/7.png",
                 "resources/img/portfolios/web/6.jpg",
+            ],
+        },
+        {
+            title: "CMR ASSOCIATES",
+            category: "Business Website",
+            description: "<b>CMR Associates</b>' website serves as a professional hub for tax and accounting services, offering clients seamless access to tax preparation, compliance solutions, and financial consulting. It features a user-friendly interface, secure document management, automated tax filing tools, and client support to streamline financial processes efficiently..",
+            date: "2023",
+            client: "CMR ASSOCIATES",
+            link: "https://www.cmrtax.com/",
+            images: [
+                "resources/img/portfolios/web/11.png",
+                "resources/img/portfolios/web/12.png",
+            ],
+        },
+        {
+            title: "Client Mastersheet Automation",
+            category: "Business System",
+            description: "The <b>Client Mastersheet Automation</b> streamlines client data management by automatically updating and organizing records in a structured database. It ensures real-time tracking of client information, invoices, tax filings, and compliance statuses, reducing manual work and minimizing errors. Integrated with AI and automation tools, it enhances efficiency, improves accuracy, and provides actionable insights for better decision-making. ",
+            date: "2024",
+            client: "CMR ASSOCIATES",
+            images: [
+                "resources/img/portfolios/app/3.png",
+                "resources/img/portfolios/app/5.png",
+            ],
+        },
+        {
+            title: "Video Automation",
+            category: "Business System",
+            description: "<b>Video Automation</b> streamlines the process of recording, editing, and managing video content using AI-driven tools. It enables automatic transcription, AI-powered summarization, and content tagging, making it easier to categorize and retrieve recordings. Ideal for meetings, webinars, and training sessions, it enhances efficiency by reducing manual editing time and improving accessibility.",
+            date: "2024",
+            client: "CMR ASSOCIATES",
+            images: [
+                "resources/img/portfolios/app/6.png",
+                
+            ],
+        },
+        {
+            title: "IRS Accounting System",
+            category: "Business App",
+            description: "The <b>IRS Accounting System with AI</b> is an intelligent financial management platform designed to streamline tax compliance, bookkeeping, and reporting. Using AI and automation, it extracts data from financial documents, categorizes expenses, and generates tax-ready reports in real-time. It integrates seamlessly with IRS e-filing systems, ensuring accuracy and compliance with tax regulations.",
+            date: "2024",
+            client: "CMR ASSOCIATES",
+            images: [
+                "resources/img/portfolios/app/1.jpg",
+                "resources/img/portfolios/app/2.jpg",
+            ],
+        },
+        {
+            title: "HEIC CONVERTER",
+            category: "Business App",
+            description: "The<b>HEIC Converter</b> is a powerful tool that allows users to convert HEIC (High-Efficiency Image Format) files to popular formats like JPEG, PNG, or PDF for better compatibility. It ensures high-quality image preservation, batch processing, and fast conversions while maintaining metadata.",
+            date: "2024",
+            client: "CMR ASSOCIATES",
+            images: [
+                "resources/img/portfolios/system/2.png",
+
+            ],
+        },
+        {
+            title: "Video Transcribe",
+            category: "Business App",
+            description: "The <b>Video Transcription Tool</b> is an AI-powered solution that automatically converts spoken content from videos into accurate text. It supports multiple languages, speaker identification, and time-stamped transcriptions, making it ideal for meetings, lectures, interviews, and content creation.",
+            date: "2024",
+            client: "CMR ASSOCIATES",
+            images: [
+                "resources/img/portfolios/system/3.png",
+                "resources/img/portfolios/system/1.jpg",
+            ],
+        },
+        {
+            title: "JARVIS",
+            category: "Personal App",
+            description: "JARVIS (Just A Rather Very Intelligent System) is an AI-driven personal assistant designed to automate tasks, manage information, and enhance productivity through voice and text commands. Integrated with smart home controls, task scheduling, and real-time data retrieval, JARVIS acts as a personalized AI companion for both professional and personal use",
+            date: "2021",
+            client: "PERSONAL PROJECT",
+            images: [
+                "resources/img/portfolios/system/4.png",
             ],
         },
     ];
